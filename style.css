@@ -3,6 +3,7 @@ body {
     text-align: center; 
     background-color: #333333;
     color: #eee;
+    max-width: 800px;
 }
 
 /* 讓日誌置中 */
@@ -19,9 +20,37 @@ body {
     text-align: left; 
     padding: 5px; 
     margin-top: 10px; 
-    
     position: relative;
-    
-
 }
-button { margin: 5px; padding: 10px; }
+
+/* 讓按鈕更適合觸控 */
+button {
+    font-size: 18px;
+    padding: 10px;
+    width: 100%;
+    max-width: 300px;
+    margin: 5px 0;
+}
+
+/* 📱 當畫面小於 600px (手機) 時調整排版 */
+@media screen and (max-width: 600px) {
+    body {
+      max-width: 100%;
+      padding: 10px;
+    }
+  
+    #game-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    button {
+      width: 90%; /* 讓按鈕在手機上比較好點擊 */
+    }
+  
+    #log {
+      font-size: 14px; /* 避免手機畫面太擠 */
+      height: 150px; /* 縮小日誌區域，讓主要畫面空間更多 */
+    }
+  }
