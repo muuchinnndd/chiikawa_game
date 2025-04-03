@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>Chiikawa 小可愛冒險</title>
+    <script defer src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>盜版吉伊卡哇模擬器</h1>
+
+    <div>
+        <p>金錢: <span id="money">100</span></p>
+        <p>體力: <span id="stamina">10</span></p>
+        <p>壓力: <span id="stress">0</span></p>
+        <p>狀態: <span id="state">正常</span></p>
+    </div>
+
+    <h2>目前事件</h2>
+    <p id="latestEvent">遊戲開始！</p>
+
+    <div id="chimeraActions" class="section" style="display:none;">
+        <h2>⚠️ 你變成了奇美拉！⚠️</h2>
+        <button onclick="stayInTown()">待在城鎮 (罰款 50 金幣)</button>
+        <button onclick="fleeToForest()">逃到森林 (等待恢復)</button>
+    </div>
+
+    <div id="home" class="section">
+        <h2>🏡 家</h2>
+        <button onclick="goToPlaza()">前往廣場</button>
+        <button onclick="goToShoppingStreet()">前往商店街</button>
+        <button onclick="rest()">休息</button>
+    </div>
+
+    <div id="plaza" class="section" style="display:none;">
+        <h2>🌳 廣場</h2>
+        <button onclick="laborBooth()">勞動攤位</button>
+        <button onclick="goToShoppingStreet()">前往商店街</button>
+        <button onclick="goHome()">回家</button>
+    </div>
+
+    <div id="laborBooth" class="section" style="display:none;">
+        <h2>💼 勞動攤位</h2>
+        <p>勞動鎧甲先生：想要除草還是討伐呢？</p>
+        <button onclick="startGrassCutting()">除草</button>
+        <button onclick="goToPlaza()">返回</button>
+    </div>
+
+    <div id="shoppingStreet" class="section" style="display:none;">
+        <h2>🏬 商店街</h2>
+        <button onclick="netCafe()">網咖</button>
+        <button onclick="ramenShop()">拉麵店</button>
+        <button onclick="pharmacy()">藥店</button>
+        <button onclick="goToPlaza()">回到廣場</button>
+    </div>
+
+    <div id="grassCutting" class="section" style="display:none;">
+        <h2>🌿 除草中</h2>
+        <div id="grassArea"></div>
+    </div>
+
+    <div id="logContainer">
+        <button class="button" onclick="toggleLog()">🔽 展開/收合 日誌 🔼</button>
+        <div id="log"></div>
+    </div>
+</body>
+</html>

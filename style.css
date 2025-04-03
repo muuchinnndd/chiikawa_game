@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, sans-serif; 
+    text-align: center; 
+    background-color: #333333;
+    color: #eee;
+}
+
+/* 讓日誌置中 */
+#logContainer {
+    text-align: center;
+    margin: auto;
+    width: 80%;
+}
+
+#log { 
+    border: 1px solid black; 
+    height: 150px; 
+    overflow-y: auto; 
+    text-align: left; 
+    padding: 5px; 
+    margin-top: 10px; 
+    
+    position: relative;
+    
+
+}
+button { margin: 5px; padding: 10px; }
