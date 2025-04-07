@@ -2,21 +2,35 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>Chiikawa 小可愛冒險</title>
-    <script defer src="script.js"></script>
+    <title>Chiikawa 小可愛冒險</title>  
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>盜版吉伊卡哇模擬器</h1>
 
-    <div>
-        <p>金錢: <span id="money">100</span></p>
-        <p>體力: <span id="stamina">10</span></p>
-        <p>壓力: <span id="stress">0</span></p>
-        <p>狀態: <span id="state">正常</span></p>
-    </div>
+    
 
-    <h2>目前事件</h2>
+    <div class="status-section">
+        <!-- 基本狀態 -->
+        <div class="status-header" onclick="toggleSection('basicStatus')">▶ 基本狀態</div>
+        <div id="basicStatus" class="status-content">
+          <p>體力：<span id="stamina"></span></p>
+          <p>壓力：<span id="stress"></span> / <span id="stressLimit"></span></p>
+          <p>狀態：<span id="state">正常</span></p>
+        </div>
+      
+        <!-- 金錢與背包 -->
+        <div class="status-header" onclick="toggleSection('itemStatus')">▶ 背包資訊</div>
+        <div id="itemStatus" class="status-content" style="display: none;">
+          <p>金錢：<span id="money"></span></p>
+          <p>包包容量：<span id="bagCapacity"></span></p>
+          <p>攜帶道具：</p>
+          <ul id="inventoryList" class="inventory-list"></ul>
+          <button onclick="useItem('減壓藥')">使用減壓藥</button>
+        </div>
+      </div>
+
+    <h2>訊息</h2>
     <p id="latestEvent">遊戲開始！</p>
 
     <div id="chimeraActions" class="section" style="display:none;">
@@ -35,15 +49,23 @@
     <div id="plaza" class="section" style="display:none;">
         <h2>🌳 廣場</h2>
         <button onclick="laborBooth()">勞動攤位</button>
+        <button onclick="talkToBagNPC()">手作攤位</button>
         <button onclick="goToShoppingStreet()">前往商店街</button>
         <button onclick="goHome()">回家</button>
     </div>
 
     <div id="laborBooth" class="section" style="display:none;">
         <h2>💼 勞動攤位</h2>
-        <p>勞動鎧甲先生：想要除草還是討伐呢？</p>
-        <button onclick="startGrassCutting()">除草</button>
+        <button onclick="checkBagBeforeWeeding()">除草</button>
         <button onclick="goToPlaza()">返回</button>
+    </div>
+
+    <div id="bag-menu" class="section" style="display:none;">
+        <h2>👛 手作攤位</h2>
+        <button onclick="buyBag(1, 50)">小背包 (50元, 容量1)</button>
+        <button onclick="buyBag(2, 100)">中背包 (100元, 容量2)</button>
+        <button onclick="buyBag(3, 150)">大背包 (150元, 容量3)</button>
+        <button onclick="goToPlaza()">回到廣場</button>
     </div>
 
     <div id="shoppingStreet" class="section" style="display:none;">
@@ -59,9 +81,14 @@
         <div id="grassArea"></div>
     </div>
 
+    <div id="free-section" class="section"></div>
+
     <div id="logContainer">
+        <div class="log-header">📒 遊戲日誌</div>
         <button class="button" onclick="toggleLog()">🔽 展開/收合 日誌 🔼</button>
         <div id="log"></div>
     </div>
+
+    <script defer src="script.js"></script>
 </body>
 </html>

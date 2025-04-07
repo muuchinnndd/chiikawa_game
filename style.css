@@ -6,11 +6,57 @@ body {
     max-width: 800px;
 }
 
+.status-section {
+  margin: 10px auto;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  padding: 10px;
+  max-width: 300px;
+  background-color: #222;
+}
+
+.status-header {
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #555;
+  padding: 6px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+
+.status-content {
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+.inventory-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.inventory-list li {
+  margin-left: 10px;
+  padding: 3px 0;
+}
+
+
 /* 讓日誌置中 */
 #logContainer {
     text-align: center;
     margin: auto;
     width: 80%;
+    margin: 10px auto;
+    max-width: 500px;
+    padding: 10px;
+    background-color: #222;
+    border: 1px solid #aaa;
+    border-radius: 8px;
+}
+
+
+.log-header {
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
 #log { 
@@ -21,7 +67,9 @@ body {
     padding: 5px; 
     margin-top: 10px; 
     position: relative;
+    border-color: #aaa;
 }
+
 
 /* 讓按鈕更適合觸控 */
 button {
@@ -53,4 +101,10 @@ button {
       font-size: 14px; /* 避免手機畫面太擠 */
       height: 150px; /* 縮小日誌區域，讓主要畫面空間更多 */
     }
-  }
+}
+
+.mobile-mode #log {
+    height: 120px; /* 手機上的日誌區塊更小 */
+}
+
+  
