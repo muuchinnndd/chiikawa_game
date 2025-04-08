@@ -17,6 +17,7 @@
           <p>體力：<span id="stamina"></span></p>
           <p>壓力：<span id="stress"></span> / <span id="stressLimit"></span></p>
           <p>狀態：<span id="state">正常</span></p>
+          <p>目前位置：<span id="location"></span></p>
         </div>
       
         <!-- 金錢與背包 -->
@@ -35,13 +36,13 @@
 
     <div id="chimeraActions" class="section" style="display:none;">
         <h2>⚠️ 你變成了奇美拉！⚠️</h2>
-        <button onclick="stayInTown()">待在城鎮 (罰款 50 金幣)</button>
+        <button onclick="moveTo('plaza')">前往城鎮</button>
         <button onclick="fleeToForest()">逃到森林 (等待恢復)</button>
     </div>
 
     <div id="home" class="section">
         <h2>🏡 家</h2>
-        <button onclick="goToPlaza()">前往廣場</button>
+        <button onclick="moveTo('plaza')">前往廣場</button>
         <button onclick="goToShoppingStreet()">前往商店街</button>
         <button onclick="rest()">休息</button>
     </div>
@@ -50,14 +51,14 @@
         <h2>🌳 廣場</h2>
         <button onclick="laborBooth()">勞動攤位</button>
         <button onclick="talkToBagNPC()">手作攤位</button>
-        <button onclick="goToShoppingStreet()">前往商店街</button>
+        <button onclick="moveTo('shoppingStreet')">前往商店街</button>
         <button onclick="goHome()">回家</button>
     </div>
 
     <div id="laborBooth" class="section" style="display:none;">
         <h2>💼 勞動攤位</h2>
         <button onclick="checkBagBeforeWeeding()">除草</button>
-        <button onclick="goToPlaza()">返回</button>
+        <button onclick="moveTo('plaza')">返回</button>
     </div>
 
     <div id="bag-menu" class="section" style="display:none;">
@@ -65,7 +66,7 @@
         <button onclick="buyBag(1, 50)">小背包 (50元, 容量1)</button>
         <button onclick="buyBag(2, 100)">中背包 (100元, 容量2)</button>
         <button onclick="buyBag(3, 150)">大背包 (150元, 容量3)</button>
-        <button onclick="goToPlaza()">回到廣場</button>
+        <button onclick="moveTo('plaza')">回到廣場</button>
     </div>
 
     <div id="shoppingStreet" class="section" style="display:none;">
@@ -73,7 +74,7 @@
         <button onclick="netCafe()">網咖</button>
         <button onclick="ramenShop()">拉麵店</button>
         <button onclick="pharmacy()">藥店</button>
-        <button onclick="goToPlaza()">回到廣場</button>
+        <button onclick="moveTo('plaza')">回到廣場</button>
     </div>
 
     <div id="grassCutting" class="section" style="display:none;">
