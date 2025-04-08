@@ -1,7 +1,7 @@
 let player = {
     money: 100,
     stamina: 10,
-    stress: 9,
+    stress: 0,
     stressLimit: 10,
     state: "正常",
     bagCapacity: 0,
