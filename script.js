@@ -4,11 +4,16 @@ let player = {
     stress: 0,
     stressLimit: 10,
     state: "正常",
+
     bagCapacity: 0,
     inventory: [],
     storedItems: [],
     equippedItems: [], // 勞動時裝備的道具
-    hasShownChimeraMenu: false
+    licenses : [],
+    hasShownChimeraMenu: false,
+
+    weapon : null,
+    
 };
 
 
@@ -20,8 +25,9 @@ function updateUI() {
     document.getElementById("stress").innerText = player.stress;
     document.getElementById("stressLimit").innerText = player.stressLimit;
     document.getElementById("state").innerText = player.state;
-    document.getElementById("location").innerText = player.location;
-    document.getElementById("bagCapacity").innerText = player.bagCapacity;
+    document.getElementById("bagCapacity").innerHTML = player.bagCapacity;
+    document.getElementById("equipped-weapon").innerText = player.weapon ? player.weapon.name : "無";
+
   
     const inventoryList = document.getElementById("inventoryList");
     inventoryList.innerHTML = "";
@@ -300,6 +306,11 @@ function buyBag(capacity, price) {
     }
 }
 
+function weaponStand() {
+    showSection("weapon-stand");
+    showWeaponStand();
+}
+
 function talkToNpc(npc) {
     const dialogue = interactWithNPC(npc);
     logMessage(`${npc}：「${dialogue}」`);
@@ -384,6 +395,55 @@ function ramenShop() {
     
 }
 
+// 武器攤位
+function showWeaponStand() {
+
+    showSection("weapon-stand");
+    const list = document.getElementById("weapon-list");
+    list.innerHTML = "";
+
+    weaponCatalog.forEach(weapon => {
+        const li = document.createElement("li");
+        let canUse = !weapon.requiresLicense || player.licenses.includes(getLicenseName(weapon.name));
+        let status = canUse ? `💰${weapon.rentPrice}元` : "❌ 無對應證照";
+
+        li.innerHTML = `
+            <b>${weapon.name}</b> (${weapon.type})<br>
+            🔺 攻擊力: ${weapon.attack} | 🔻 速度: ${weapon.speed}<br>
+            📝 ${weapon.description}<br>
+            ${status}
+            ${canUse ? `<br><button onclick="rentWeapon('${weapon.name}')">租借</button>` : ""}
+        `;
+        list.appendChild(li);
+    });
+
+    
+}
+
+function rentWeapon(name) {
+    const weapon = weaponCatalog.find(w => w.name === name);
+    if (!weapon) return;
+
+    if (player.money < weapon.rentPrice) {
+        logMessage("金錢不足，無法租借該武器！");
+        return;
+    }
+
+    player.money -= weapon.rentPrice;
+    player.weapon = weapon;
+    logMessage(`你租借了 ${weapon.name}，請好好使用！`);
+
+    updateUI();
+    
+}
+
+// 根據武器名稱推測對應證照
+function getLicenseName(weaponName) {
+    if (weaponName === "單手劍") return "劍術證照";
+    if (weaponName === "狼牙棒") return "重擊證照";
+    if (weaponName === "斧頭") return "伐木證照";
+    return "";
+}
 
 
 updateUI();
@@ -546,3 +606,52 @@ const items = {
         }
     }
 };
+
+
+const weaponCatalog = [
+    {
+        name: "長棍",
+        type: "普通",
+        attack: 5,
+        speed: 5,
+        description: "基本武器，攻守平衡。",
+        requiresLicense: false,
+        rentPrice: 10
+    },
+    {
+        name: "討伐棒",
+        type: "特殊",
+        attack: 6,
+        speed: 4,
+        description: "Y字形討伐棒，可使敵人行動遲緩。",
+        requiresLicense: false,
+        rentPrice: 15
+    },
+    {
+        name: "單手劍",
+        type: "高階",
+        attack: 8,
+        speed: 6,
+        description: "訓練有素的討伐者專用，需要劍術證照。",
+        requiresLicense: true,
+        rentPrice: 25
+    },
+    {
+        name: "狼牙棒",
+        type: "高階",
+        attack: 10,
+        speed: 3,
+        description: "威力極強，但揮動緩慢，需要重擊證照。",
+        requiresLicense: true,
+        rentPrice: 30
+    },
+    {
+        name: "斧頭",
+        type: "高階",
+        attack: 9,
+        speed: 4,
+        description: "可以劈開堅硬外殼的強敵，需要伐木證照。",
+        requiresLicense: true,
+        rentPrice: 28
+    }
+];

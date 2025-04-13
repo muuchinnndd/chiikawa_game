@@ -1,5 +1,8 @@
 body {
     font-family: Arial, sans-serif; 
+    font-size: 1rem;
+    margin: 0;
+    padding: 0;
     text-align: center; 
     background-color: #333333;
     color: #eee;
@@ -73,38 +76,39 @@ body {
 
 /* 讓按鈕更適合觸控 */
 button {
-    font-size: 18px;
-    padding: 10px;
+    font-size: 1rem;
+    padding: 0.5em 1em;
+    margin: 0.3em 0;
     width: 100%;
     max-width: 300px;
-    margin: 5px 0;
+    
 }
 
 /* 📱 當畫面小於 600px (手機) 時調整排版 */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
     body {
       max-width: 100%;
-      padding: 10px;
+      font-size: 1.1rem; /* 稍微放大字體 */
+      padding: 1em;
     }
   
     #game-container {
       display: flex;
       flex-direction: column;
       align-items: center;
+      padding: 1em 0.5em;
     }
   
     button {
       width: 90%; /* 讓按鈕在手機上比較好點擊 */
+      font-size: 1.2rem;
     }
   
     #log {
-      font-size: 14px; /* 避免手機畫面太擠 */
+      font-size: 1rem; /* 避免手機畫面太擠 */
       height: 150px; /* 縮小日誌區域，讓主要畫面空間更多 */
+      overflow-y: auto;
     }
-}
-
-.mobile-mode #log {
-    height: 120px; /* 手機上的日誌區塊更小 */
 }
 
   
