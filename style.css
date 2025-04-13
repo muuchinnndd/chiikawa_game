@@ -85,7 +85,7 @@ button {
 }
 
 /* 📱 當畫面小於 600px (手機) 時調整排版 */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1080px) {
     body {
       max-width: 100%;
       font-size: 1.1rem; /* 稍微放大字體 */
